@@ -104,12 +104,19 @@ This is a personal-use tool that **does not display full copyrighted media**, an
 
 ```text
 media-tracker-extension/
-├── manifest.json # Chrome extension config
-├── content.js # Injected script for Google search pages
-├── popup.html # Extension popup UI
-├── popup.js # Logic for displaying tracked movies
-├── styles.css # Styles shared between injected and popup UI
-└── icons/ # Extension icons
+├── build/
+├── icons/                      # Extension icons
+├── manifests/
+│   └── manifest.chrome.json    # Chrome extension config
+├── scripts/
+│   └── build.js                # For building extension zips
+├── src/
+│   ├── content.js              # Injected script for Google search pages
+│   ├── popup.html              # Extension popup UI
+│   ├── popup.js                # Logic for displaying tracked movies
+│   └── styles.css              # Styles shared between injected and popup UI
+├── .gitignore
+└── README.md
 ```
 
 ---
