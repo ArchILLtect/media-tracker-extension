@@ -111,7 +111,7 @@ Plan to fix:
 
 ## 💬 Acknowledgments
 
--   Built and maintained with help from `Candide Gaspard-Proux Thénault`
+-   Built and maintained with help from `Candide Gaspard & Payge Terrebonne`
 -   A learning project turned passion tool
 -   No external APIs or libraries required—just Chrome, code, and DOM scraping magic 😎
 -   Feedback, PRs, and ⭐ stars welcome!
