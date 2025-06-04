@@ -3,6 +3,8 @@
 Track movies right from Google Search results!  
 This Chrome extension adds lightweight, visually integrated tracking tools directly to movie result pages on Google, letting you quickly mark titles as **Watched** or add them to your **Watchlist**—with persistent sync storage across sessions.
 
+> 🔍 Currently supports **Google movie search pages only**.
+
 ---
 
 ## ⚙️ How It Works
@@ -19,6 +21,18 @@ Once installed, when you Google a movie, the extension:
 
 ---
 
+## 🌐 Browser Support
+
+| Browser | Supported Now | Planned |
+| ------- | ------------- | ------- |
+| Chrome  | ✅ Yes        | ✅ Yes  |
+| Firefox | ❌ Not yet    | ✅ Yes  |
+| Edge    | ❌ Not yet    | ✅ Yes  |
+
+Multi-browser support will use a shared `src/` folder + per-browser `manifest.*.json` files, bundled via `scripts/build.js`.
+
+---
+
 ## 🛠️ Installation
 
 1. Clone the repo or [download the ZIP](https://github.com/YOUR_USERNAME/media-tracker-extension).
@@ -32,11 +46,13 @@ Once installed, when you Google a movie, the extension:
 
 -   ✅ Detects movie-specific pages via DOM analysis
 -   🎯 Adds overlay UI directly to Google results pages
+-   ✅ Provides **Watched** and **Watchlist** buttons with toggling states
 -   📌 Persistent tracking of:
     -   Watch status (Watched / Unwatched)
     -   Watchlist status (Added / Not Added)
 -   🖼 Attempts to retrieve high-quality poster images (or gracefully degrades with fallbacks)
--   🔁 Syncs across devices using `chrome.storage.sync`
+-   🔁 Syncs movie status and poster image URI via `chrome.storage.sync`
+-   ✅ Injects thumbnail, status, and toast notifications dynamically
 -   📋 Popup view showing all tracked entries with:
     -   Movie title
     -   Thumbnail
@@ -44,47 +60,68 @@ Once installed, when you Google a movie, the extension:
 
 ---
 
-## 🧭 Roadmap
+## 📈 Planned Features / Roadmap
 
-Here’s what’s coming soon and what’s being worked on:
+These are goals for the **MVP milestone** and beyond:
 
-### In Progress / Next Steps
+### MVP (Chrome Only)
 
--   [ ] ✅ Split and persist `watched` vs `watchlist` states separately
--   [ ] 🔄 Display persistent button state on page load
+-   [x] ✅ Split and persist `watched` vs `watchlist` states separately
+-   [x] 🔄 Display persistent button state on page load
+-   [x] Chrome popup UI with persistent list
 -   [ ] 🌗 Auto-detect and adapt to light/dark themes
+-   [ ] Improve fallback logic for missing images
 -   [ ] 🌐 Add a **landing page** hosted on `media.nickhanson.me` (or similar) to:
     -   View full library
     -   Backup/export/import data
     -   Sync manually across devices
--   [ ] 📺 Add support for **TV shows** (detection logic, display metadata, etc.)
 -   [ ] 🎮 Plan future expansions: video games, music albums, books, celebrities
 -   [ ] 🔍 Enable keyword filtering or tagging system in popup and landing page
 
 ### Stretch Goals
 
 -   [ ] 📦 `chrome.storage.local` fallback when sync quota exceeded
--   [ ] 🌍 Cross-browser support (Firefox, Edge, Brave)
+-   [ ] 🌍 Cross-browser support, builds via `manifest.*.json`:
+    -   [ ] Firefox
+    -   [ ] Edge
+    -   [ ] Brave
+    -   [ ] Safari
 -   [ ] 📤 Optional cloud sync to user-specified backend (encrypted JSON?)
+-   [ ] 📺 Add support for **TV shows** (detection logic, display metadata, etc.)
+-   [ ] 🎮 Add optional support for **games, albums, books, celebrities and maybe more 😲**
+-   [ ] ⭐ Add support for user rating, reviews, or tags
 -   [ ] 📈 Usage analytics toggle for user stats (local only)
 
 ---
 
 ## 🐞 Known Issues
 
--   ❗ Some obscure or low-traffic movies may lack a full-size poster element
--   ❗ Pages that use dynamic JS navigation (e.g., carousel clicks) do not re-trigger `window.onload` → manual checks or MutationObserver might be needed
+Unfixable? due to Chrome logic/process:
+
 -   ❗ Dev Tools open during reload sometimes causes modal behavior to break (due to Google iframe security behavior)
--   ❗ Google returns extremely long image URLs (~16kb) that exceed `chrome.storage.sync` quota (workaround planned)
+-   ⚠ Base64 poster URIs may exceed storage sync limits (being worked around)
+
+Plan to fix:
+
+-   ❗ Some obscure or low-traffic movies may lack a full-size poster element
+-   ⚠ Image scraping fails for lesser-known or missing posters
+-   ❗ Pages that use dynamic JS navigation (e.g., carousel clicks) do not re-trigger `window.onload` → manual checks or MutationObserver might be needed
 
 ---
 
-## 💬 Credits & Notes
+## 💬 Acknowledgments
 
--   Built and maintained by **[Your Name]**
+-   Built and maintained with help from `Candide Gaspard-Proux Thénault`
 -   A learning project turned passion tool
 -   No external APIs or libraries required—just Chrome, code, and DOM scraping magic 😎
 -   Feedback, PRs, and ⭐ stars welcome!
+
+---
+
+## 💬 Author
+
+Built by [ArchILLtect](https://github.com/ArchILLtect)  
+❤️ Fueled by caffeine, movie fandom, and sweet DOM hijinks.
 
 ---
 
@@ -126,3 +163,9 @@ media-tracker-extension/
 This extension is about _control and memory_—making your media life more manageable without needing an account or app for everything. Built by a developer who finally realized:
 
 > _"If the tools don't exist the way I want them… maybe it's time I build them myself."_
+
+---
+
+## 📌 License
+
+MIT (unless updated later)
