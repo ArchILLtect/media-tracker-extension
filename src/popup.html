@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Movie Tracker</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 10px;
+                max-width: 800px;
+                min-width: 500px;
+            }
+            .movie {
+                margin: 5px 0;
+                padding: 5px;
+                border-bottom: 1px solid #ccc;
+            }
+            button {
+                margin-left: 10px;
+            }
+            .entry {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                width: auto;
+                margin-bottom: 10px;
+            }
+            .main {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+            }
+            .PUPimage {
+                width: 50px;
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Saved Movies</h2>
+        <div id="movie-list"></div>
+        <script src="popup.js"></script>
+    </body>
+</html>

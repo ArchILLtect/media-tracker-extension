@@ -1,0 +1,253 @@
+.btn-tracker {
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
+
+.mt-main-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.mt-app-separator {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    display: block;
+    margin: 20px auto;
+    max-width: 600px;
+    box-sizing: border-box;
+    padding: 0;
+    box-shadow: none;
+    background: none;
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.mt-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.mt-app-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    font-family: Google Sans, Roboto, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.mt-settings-button {
+    margin-right: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: #1558d6;
+    border: none;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 12px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.mt-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mt-btn-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0;
+    padding: 5px 10px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    text-align: center;
+}
+
+.mt-btn-container:hover {
+    background-color: #e0e0e0;
+    color: #1558d6;
+    border-color: #555;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mt-btn-container:active {
+    background-color: #e0e0e0;
+    color: #333;
+    border-color: #333;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mt-btn-container:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(21, 88, 214, 0.5);
+    background-color: #f0f0f0;
+    border-color: #555;
+}
+
+.mt-btn-container:focus-visible {
+    outline: 2px solid #1558d6;
+    outline-offset: 2px;
+}
+
+.mt-btn-icon {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    opacity: 75%;
+    display: inline-block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    transition: transform 0.3s;
+    transform: scale(1);
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+.mt-btn-icon:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(21, 88, 214, 0.5);
+    background-color: #f0f0f0;
+    border-color: #555;
+}
+
+.mt-btn-icon:focus-visible {
+    outline: 2px solid #1558d6;
+    outline-offset: 2px;
+}
+
+.mt-btn-icon:hover {
+    background-color: #f0f0f0;
+    border-color: #555;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.mt-btn-icon:active {
+    background-color: #e0e0e0;
+    border-color: #333;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mt-btn-outline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    margin: 0;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mt-btn-outline:hover {
+    background-color: #f0f0f0;
+    border-color: #555;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mt-btn-outline:active {
+    background-color: #e0e0e0;
+    border-color: #333;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mt-btn-outline:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(21, 88, 214, 0.5);
+    background-color: #f0f0f0;
+    border-color: #555;
+}
+
+.mt-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #202124;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    z-index: 99999;
+    opacity: 0.95;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.mt-app-image {
+    width: 50%;
+}
+
+.darkBtn {
+    background-color: #494949;
+    color: #efefef;
+}
+
+.lightBtn {
+    background-color: #efefef;
+    color: #494949;
+}
