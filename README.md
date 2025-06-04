@@ -102,6 +102,7 @@ This is a personal-use tool that **does not display full copyrighted media**, an
 
 ## 📁 File Structure
 
+```text
 media-tracker-extension/
 ├── manifest.json # Chrome extension config
 ├── content.js # Injected script for Google search pages
@@ -109,6 +110,7 @@ media-tracker-extension/
 ├── popup.js # Logic for displaying tracked movies
 ├── styles.css # Styles shared between injected and popup UI
 └── icons/ # Extension icons
+```
 
 ---
 
