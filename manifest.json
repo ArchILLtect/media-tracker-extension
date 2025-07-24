@@ -1,0 +1,29 @@
+{
+    "name": "Movie Tracker",
+    "description": "Track movies you’ve watched or want to watch via Google Search.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["storage", "activeTab", "scripting"],
+    "host_permissions": ["https://www.google.com/*"],
+    "action": {
+        "default_popup": "src/popup.html",
+        "default_icon": { "48": "icons/icon48.png" }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["icons/loading.svg"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "background": {
+        "service_worker": "src/background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.google.com/search*"],
+            "js": ["src/content.js"],
+            "css": ["src/styles.css"]
+        }
+    ]
+}
