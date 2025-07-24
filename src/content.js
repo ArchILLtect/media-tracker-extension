@@ -1,13 +1,17 @@
 function isMoviePage() {
     // Primary: Look for 'Watch movie' tag
-    const watchMovieTag = Array.from(
-        document.querySelectorAll("span.mgAbYb.RES9jf.pb3iw.OSrXXb")
-    ).find((el) => el.textContent?.trim().toLowerCase() === "watch movie");
+    const watchMovieTag = Array.from(document.querySelectorAll("span")).find(
+        (el) => el.textContent?.trim().toLowerCase() === "watch movie"
+    );
 
     // Secondary: Look for runtime in subtitle
-    const subtitleEl = document.querySelector('[data-attrid="subtitle"] span');
+    const subtitleEl = document.querySelector(
+        '[data-attrid="subtitle"] span:last-of-type'
+    );
     const hasRuntime =
-        subtitleEl && /\d+h\s\d+m|\d+h/.test(subtitleEl.textContent);
+        subtitleEl && /\d+h\s*\d+m|\d+h/.test(subtitleEl.textContent)
+            ? true
+            : false;
 
     return !!(watchMovieTag || hasRuntime);
 }
@@ -17,9 +21,9 @@ let imageModalCloseBtn;
 let mediaImgElement;
 let mediaImgImage;
 
-const mediaMainImgElement = document.querySelector(
-    '[id^="dimg_"][alt="Game poster image"]'
-);
+const mediaMainImgElement =
+    document.querySelector('[id^="dimg_"][alt="Game poster image"]') ||
+    document.querySelector('[id^="dimg_"][class="YQ4gaf zr758c wA1Bge"]');
 
 let mediaDescriptionText = "";
 let mediaImgURL;
@@ -35,7 +39,7 @@ if (mediaDescription) {
         const mediaDescriptionParent = Array.from(
             mediaDescriptionAncestor.children
         ).filter((el) => el.tagName === "SPAN");
-        if (mediaDescriptionParent && mediaDescriptionParent.length === 1) {
+        if (mediaDescriptionParent && mediaDescriptionParent.length > 0) {
             const mediaDescriptionChildren =
                 mediaDescriptionParent[0].childNodes;
             if (mediaDescriptionChildren.length > 0) {
@@ -126,8 +130,8 @@ if (allMediaInfoPoints.length > 0) {
 const toolPlacement = document.querySelector(
     "div.xfX4Ac.JI5uCe.qB9BY.KU0vqd.WY0eLb.NSQUyc"
 );
-const titleText = titleElement?.textContent?.trim();
 
+const titleText = titleElement?.textContent?.trim();
 function showToast(message) {
     const toast = document.createElement("div");
     toast.className = "mt-toast";
@@ -155,6 +159,22 @@ if (
     const settingsButton = document.createElement("button");
     const buttonsContainer = document.createElement("div");
     const mainContainerMT = document.createElement("div");
+
+    const spinnerOverlay = document.createElement("div");
+    spinnerOverlay.id = "mt-loading-overlay";
+    spinnerOverlay.className = "mt-spinner-overlay";
+    const spinner = document.createElement("img");
+    spinner.id = "mt-loading-spinner";
+    spinner.className = "mt-spinner";
+    spinner.src = chrome.runtime.getURL("icons/loading.svg");
+    spinner.alt = "Loading...";
+
+    function hideSpinner() {
+        const spinnerDiv = document.getElementById("mt-loading-overlay");
+        const spinnerImg = document.getElementById("mt-loading-spinner");
+        if (spinnerDiv) spinnerDiv.classList.add("hidden");
+        if (spinnerImg) spinnerImg.classList.add("hidden");
+    }
 
     appSeperator.id = "media-tracker-separator";
     mediaImgContainer.id = "media-image-container";
@@ -190,18 +210,19 @@ if (
     titleContainer.appendChild(settingsButton);
 
     mainContainerMT.appendChild(titleContainer);
-    mediaImgContainer.appendChild(mediaImgImage);
+    spinnerOverlay.appendChild(spinner);
+    mainContainerMT.appendChild(spinnerOverlay);
     mainContainerMT.appendChild(mediaImgContainer);
     mainContainerMT.appendChild(buttonsContainer);
 
     const statuses = [
         {
-            text: ["Unwatched", "Watched"],
+            text: ["Not Yet Watched", "Watched"],
             icon: ["add", "check"],
             selector: ["lightBtn", "darkBtn"],
         },
         {
-            text: ["Add to\nWatchlist", "Added to\nWatchlist"],
+            text: ["Add to\nWatchlist", "On\nWatchlist"],
             icon: ["add", "check"],
             selector: ["lightBtn", "darkBtn"],
         },
@@ -225,7 +246,6 @@ if (
 
         chrome.storage.sync.get([titleText]).then((result) => {
             const media = result[titleText];
-            console.log("checking...");
             if (status === statuses[0] && media?.watched) {
                 currentPair = 1;
             }
@@ -319,18 +339,39 @@ if (
         alert("Settings button clicked! (Functionality not implemented yet)");
     };
 
+    const closeImageModal = () => {
+        const imageModalCloseBtn = document.querySelector(
+            'button[jsname="tqp7ud"]'
+        );
+        if (imageModalCloseBtn) {
+            imageModalCloseBtn.click();
+            console.log("Image modal close button clicked.");
+        } else {
+            console.warn("Image modal close button not found.");
+        }
+    };
+
     const waitAndClose = () => {
         imageModalCloseBtn = document.querySelector('button[jsname="tqp7ud"]');
-        mediaImgElement = document.querySelector('img[jsname="JuXqh"]');
+        mediaImgElement =
+            document.querySelector('img[jsname="kn3ccd"]') ||
+            document.querySelector('img[jsname="JuXqh"]');
+
+        console.log("checking...");
 
         if (imageModalCloseBtn && mediaImgElement) {
             if (mediaImgElement) {
                 mediaImgURL = mediaImgElement.src;
+            } else {
+                console.warn("Media image element not found.");
+                return;
             }
+            mediaImgContainer.appendChild(mediaImgImage);
             mediaImgImage.src = mediaImgURL;
-            imageModalCloseBtn?.click();
+            setTimeout(closeImageModal, 500);
+            hideSpinner();
         } else {
-            setTimeout(waitAndClose, 1000);
+            setTimeout(waitAndClose, 500);
         }
     };
 
