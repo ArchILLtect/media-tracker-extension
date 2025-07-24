@@ -8,9 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const main = document.createElement("div");
             main.className = "main";
             image.className = "PUPimage";
-            image.src = data.imageURL;
+            image.src =
+                data.imageURL || "../images/Default_Movie_Cover_Art.png"; // Fallback image
             title.className = "title";
-            title.textContent = `${name} - ${data.watched} - ${data.watchlist}`;
+            title.textContent = `${name} - ${
+                data.watched ? "Watched" : "Unwatched"
+            } - ${data.watchlist ? "On Watchlist" : "Not on Watchlist"}`;
             entry.className = "entry";
             const del = document.createElement("button");
             del.textContent = "Delete";
